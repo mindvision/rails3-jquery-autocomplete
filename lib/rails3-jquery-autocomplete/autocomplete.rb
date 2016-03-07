@@ -49,7 +49,7 @@ module Rails3JQueryAutocomplete
             'active_record'
           end
         end
-        define_method("get_autocomplete_order") do |method, options, model=nil|
+        define_method("get_autocomplete_order") do |method, options, model|
           model = nil unless model.present?
           method("#{get_prefix(get_object(options[:class_name] || object))}_get_autocomplete_order").call(method, options, model)
         end
