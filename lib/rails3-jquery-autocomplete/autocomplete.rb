@@ -50,6 +50,7 @@ module Rails3JQueryAutocomplete
           end
         end
         define_method("get_autocomplete_order") do |method, options, model=nil|
+          model = nil unless model.present?
           method("#{get_prefix(get_object(options[:class_name] || object))}_get_autocomplete_order").call(method, options, model)
         end
 
@@ -72,7 +73,7 @@ module Rails3JQueryAutocomplete
             items = {}
           end
 
-          render :json => json_for_autocomplete(items, options[:display_value] ||= method, options[:extra_data], &block), root: false
+          render :json => json_for_autocomplete(items, options[:display_value] ||= method, options[:extra_data], &block), :root => false
         end
       end
     end
